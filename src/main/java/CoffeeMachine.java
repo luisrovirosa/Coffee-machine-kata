@@ -13,7 +13,7 @@ public class CoffeeMachine {
     }
 
     public void serve(Order order) {
-        if (amount < order.getOrderPrice()) {
+        if (!(amount >= order.getOrderPrice())) {
             drinkMaker.message(missingAmountMessage(order));
             return;
         }
