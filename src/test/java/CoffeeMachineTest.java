@@ -17,23 +17,17 @@ public class CoffeeMachineTest {
     }
 
     @Test
-    public void send_the_order_to_prepare_a_coffee_when_there_is_enough_money(){
+    public void send_the_order_to_prepare_a_coffee_when_there_is_enough_money() {
         verifyServeOrder(PRICE_OF_COFFEE, new Coffee(0));
     }
 
     @Test
-    public void do_not_send_the_order_to_prepare_a_coffee_when_there_is_no_enough_money(){
-        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
-        machine.pay(0.39);
-
-        Order order = new Coffee(0);
-        machine.serve(order);
-
-        verify(drinkMaker, never()).serve(order);
+    public void do_not_send_the_order_to_prepare_a_coffee_when_there_is_no_enough_money() {
+        verifyDoNotServeOrder(PRICE_OF_COFFEE - 0.1, new Coffee(0));
     }
 
     @Test
-    public void send_a_message_with_the_missing_amount(){
+    public void send_a_message_with_the_missing_amount() {
         CoffeeMachine machine = new CoffeeMachine(drinkMaker);
         machine.pay(0.30);
 
@@ -50,5 +44,14 @@ public class CoffeeMachineTest {
         machine.serve(order);
 
         verify(drinkMaker).serve(order);
+    }
+
+    private void verifyDoNotServeOrder(double payedAmount, Order order) {
+        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
+        machine.pay(payedAmount);
+
+        machine.serve(order);
+
+        verify(drinkMaker, never()).serve(order);
     }
 }
