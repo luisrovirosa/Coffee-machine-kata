@@ -14,13 +14,16 @@ public class DrinkMaker {
     }
 
     private String productCommand(Order order) {
+        String command;
         if (order instanceof Coffee) {
-            return "C";
+            command = "C";
         } else if (order instanceof Tea) {
-            return "T";
+            command = "T";
         } else {
-            return "H";
+            command = "H";
         }
+        command = order.isExtraHot() ? command + 'h' : command;
+        return command;
     }
 
     private String stickCommand(Order order) {

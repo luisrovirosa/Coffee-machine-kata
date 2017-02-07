@@ -1,6 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.Or;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,25 +42,25 @@ public class CoffeeMachineTest {
 
     @Test
     public void send_a_message_with_the_missing_amount() {
-        verifyMessageIsSentWith(0.40, new Coffee(0), "0,2 euros");
+        verifyMessageIsSentWith(0.40, new Coffee(0, false), "0,2 euros");
     }
 
     @Test
     public void send_a_message_with_the_missing_amount_when_prepare_a_tea_without_enough_money() {
-        verifyMessageIsSentWith(0.30, new Tea(0), "0,1 euros");
+        verifyMessageIsSentWith(0.30, new Tea(0, false), "0,1 euros");
     }
 
     @Test
     public void send_a_message_with_the_missing_amount_when_prepare_a_chocolate_without_enough_money() {
-        verifyMessageIsSentWith(0.30, new Chocolate(0), "0,2 euros");
+        verifyMessageIsSentWith(0.30, new Chocolate(0, false), "0,2 euros");
     }
 
     private HashMap<Order, Double> validOrders() {
         HashMap<Order, Double> validOrders = new HashMap<Order, Double>();
-        validOrders.put(new Coffee(0), PRICE_OF_COFFEE);
-        validOrders.put(new Tea(0), PRICE_OF_TEA);
-        validOrders.put(new Chocolate(0), PRICE_OF_CHOCOLATE);
-        validOrders.put(new Orange(0), PRICE_OF_ORANGE);
+        validOrders.put(new Coffee(0, false), PRICE_OF_COFFEE);
+        validOrders.put(new Tea(0, false), PRICE_OF_TEA);
+        validOrders.put(new Chocolate(0, false), PRICE_OF_CHOCOLATE);
+        validOrders.put(new Orange(0, false), PRICE_OF_ORANGE);
         return validOrders;
     }
 

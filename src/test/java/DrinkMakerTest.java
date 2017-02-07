@@ -40,6 +40,16 @@ public class DrinkMakerTest {
         verify(driver).send("C:2:0");
     }
 
+
+    @Test
+    public void should_send_the_order_to_serve_a_extra_hot_coffee() {
+        DrinkMaker drinkMaker = drinkMaker();
+
+        drinkMaker.serve(extraHotCoffeeWithoutSugar());
+
+        verify(driver).send("Ch::");
+    }
+
     @Test
     public void should_send_the_order_to_serve_a_tea_without_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
@@ -56,6 +66,15 @@ public class DrinkMakerTest {
         drinkMaker.serve(teaWithSugar(1));
 
         verify(driver).send("T:1:0");
+    }
+
+    @Test
+    public void should_send_the_order_to_serve_a_extra_hot_tea() {
+        DrinkMaker drinkMaker = drinkMaker();
+
+        drinkMaker.serve(extraHotTeaWithoutSugar());
+
+        verify(driver).send("Th::");
     }
 
     @Test
@@ -76,6 +95,16 @@ public class DrinkMakerTest {
         verify(driver).send("H:1:0");
     }
 
+
+    @Test
+    public void should_send_the_order_to_serve_a_extra_hot_chocolate() {
+        DrinkMaker drinkMaker = drinkMaker();
+
+        drinkMaker.serve(extraHotChocolateWithoutSugar());
+
+        verify(driver).send("Hh::");
+    }
+
     @Test
     public void should_send_the_message_to_the_user() {
         DrinkMaker drinkMaker = drinkMaker();
@@ -94,7 +123,11 @@ public class DrinkMakerTest {
     }
 
     private Order coffeeWithSugar(int numberOfSugars) {
-        return new Coffee(numberOfSugars);
+        return new Coffee(numberOfSugars, false);
+    }
+
+    private Order extraHotCoffeeWithoutSugar() {
+        return new Coffee(0, true);
     }
 
     private Order teaWithoutSugar() {
@@ -102,7 +135,11 @@ public class DrinkMakerTest {
     }
 
     private Order teaWithSugar(int numberOfSugars) {
-        return new Tea(numberOfSugars);
+        return new Tea(numberOfSugars, false);
+    }
+
+    private Order extraHotTeaWithoutSugar() {
+        return new Tea(0, true);
     }
 
     private Order chocolateWithoutSugar() {
@@ -110,6 +147,10 @@ public class DrinkMakerTest {
     }
 
     private Chocolate chocolateWithSugar(int numberOfSugars) {
-        return new Chocolate(numberOfSugars);
+        return new Chocolate(numberOfSugars, false);
+    }
+
+    private Order extraHotChocolateWithoutSugar() {
+        return new Chocolate(0, true);
     }
 }
