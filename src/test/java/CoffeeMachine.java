@@ -10,10 +10,14 @@ public class CoffeeMachine {
     }
 
     private String stickCommand(Order order) {
-        return order.numberOfSugars() > 0 ? "0" : "";
+        return containsSugar(order) ? "0" : "";
     }
 
     private String numberOfSugars(Order order) {
-        return order.numberOfSugars() > 0 ? String.valueOf(order.numberOfSugars()) : "";
+        return containsSugar(order) ? String.valueOf(order.numberOfSugars()) : "";
+    }
+
+    private boolean containsSugar(Order order) {
+        return order.numberOfSugars() > 0;
     }
 }
