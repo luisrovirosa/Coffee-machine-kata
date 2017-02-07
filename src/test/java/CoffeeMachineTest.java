@@ -24,17 +24,11 @@ public class CoffeeMachineTest {
 
     @Test
     public void send_the_order_to_prepare_an_order_when_there_is_enough_money() {
-        HashMap<Order, Double> validOrders = new HashMap<Order, Double>();
-        validOrders.put(new Coffee(0), PRICE_OF_COFFEE);
-        validOrders.put(new Tea(0), PRICE_OF_TEA);
-        validOrders.put(new Chocolate(0), PRICE_OF_CHOCOLATE);
-
-        for (Map.Entry<Order, Double> entry : validOrders.entrySet()) {
+        for (Map.Entry<Order, Double> entry : validOrders().entrySet()) {
             Order order = entry.getKey();
             double price = entry.getValue();
             verifyServeOrder(price, order);
         }
-
     }
 
     @Test
@@ -60,6 +54,14 @@ public class CoffeeMachineTest {
     @Test
     public void send_a_message_with_the_missing_amount_when_prepare_a_chocolate_without_enough_money() {
         verifyMessageIsSentWith(0.30, new Chocolate(0), "0,2 euros");
+    }
+
+    private HashMap<Order, Double> validOrders() {
+        HashMap<Order, Double> validOrders = new HashMap<Order, Double>();
+        validOrders.put(new Coffee(0), PRICE_OF_COFFEE);
+        validOrders.put(new Tea(0), PRICE_OF_TEA);
+        validOrders.put(new Chocolate(0), PRICE_OF_CHOCOLATE);
+        return validOrders;
     }
 
     private void verifyServeOrder(double payedAmount, Order order) {
