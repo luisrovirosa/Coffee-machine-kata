@@ -13,12 +13,12 @@ public class CoffeeMachine {
     }
 
     public void serve(Order order) {
-        if (amount >= order.getOrderPrice()){
-            drinkMaker.serve(order);
-        } else {
+        if (amount < order.getOrderPrice()) {
             DecimalFormat format = new DecimalFormat("#.#");
             String missingAmount = format.format(order.getOrderPrice() - amount);
             drinkMaker.message(missingAmount + " euros");
+        } else {
+            drinkMaker.serve(order);
         }
 
     }
