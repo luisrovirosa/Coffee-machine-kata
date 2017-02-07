@@ -14,7 +14,7 @@ public class CoffeeMachineTest {
     }
     @Test
     public void should_send_the_order_to_serve_a_coffee_without_sugar(){
-        CoffeeMachine machine = new CoffeeMachine(driver);
+        CoffeeMachine machine = machine();
 
         machine.serve(coffeeWithoutSugar());
 
@@ -23,7 +23,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_send_the_order_to_serve_a_coffee_with_one_sugar(){
-        CoffeeMachine machine = new CoffeeMachine(driver);
+        CoffeeMachine machine = machine();
 
         machine.serve(coffeeWithSugar(1));
 
@@ -32,11 +32,15 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_send_the_order_to_serve_a_coffee_with_two_sugar(){
-        CoffeeMachine machine = new CoffeeMachine(driver);
+        CoffeeMachine machine = machine();
 
         machine.serve(coffeeWithSugar(2));
 
         verify(driver).send("C:2:0");
+    }
+
+    private CoffeeMachine machine() {
+        return new CoffeeMachine(driver);
     }
 
     private Order coffeeWithoutSugar() {
