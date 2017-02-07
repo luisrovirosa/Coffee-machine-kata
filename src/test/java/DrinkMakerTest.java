@@ -9,11 +9,12 @@ public class DrinkMakerTest {
     private MachineDriver driver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         driver = mock(MachineDriver.class);
     }
+
     @Test
-    public void should_send_the_order_to_serve_a_coffee_without_sugar(){
+    public void should_send_the_order_to_serve_a_coffee_without_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.serve(coffeeWithoutSugar());
@@ -22,7 +23,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void should_send_the_order_to_serve_a_coffee_with_one_sugar(){
+    public void should_send_the_order_to_serve_a_coffee_with_one_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.serve(coffeeWithSugar(1));
@@ -31,7 +32,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void should_send_the_order_to_serve_a_coffee_with_two_sugar(){
+    public void should_send_the_order_to_serve_a_coffee_with_two_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.serve(coffeeWithSugar(2));
@@ -40,7 +41,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void should_send_the_order_to_serve_a_tea_without_sugar(){
+    public void should_send_the_order_to_serve_a_tea_without_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.serve(teaWithoutSugar());
@@ -49,7 +50,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void should_send_the_order_to_serve_a_tea_with_one_sugar(){
+    public void should_send_the_order_to_serve_a_tea_with_one_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.serve(teaWithSugar(1));
@@ -58,7 +59,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void should_send_the_order_to_serve_a_chocolate_without_sugar(){
+    public void should_send_the_order_to_serve_a_chocolate_without_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.serve(chocolateWithoutSugar());
@@ -67,7 +68,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void should_send_the_order_to_serve_a_chocolate_with_one_sugar(){
+    public void should_send_the_order_to_serve_a_chocolate_with_one_sugar() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.serve(chocolateWithSugar(1));
@@ -76,7 +77,7 @@ public class DrinkMakerTest {
     }
 
     @Test
-    public void should_send_the_message_to_the_user(){
+    public void should_send_the_message_to_the_user() {
         DrinkMaker drinkMaker = drinkMaker();
 
         drinkMaker.message("a Message");
