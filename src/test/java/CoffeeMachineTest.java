@@ -1,5 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.internal.matchers.Or;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
@@ -19,23 +23,23 @@ public class CoffeeMachineTest {
     }
 
     @Test
-    public void send_the_order_to_prepare_a_coffee_when_there_is_enough_money() {
-        verifyServeOrder(PRICE_OF_COFFEE, new Coffee(0));
-    }
+    public void send_the_order_to_prepare_an_order_when_there_is_enough_money() {
+        HashMap<Order, Double> validOrders = new HashMap<Order, Double>();
+        validOrders.put(new Coffee(0), PRICE_OF_COFFEE);
+        validOrders.put(new Tea(0), PRICE_OF_TEA);
+        validOrders.put(new Chocolate(0), PRICE_OF_CHOCOLATE);
 
-    @Test
-    public void send_a_message_with_the_missing_amount_when_prepare_a_coffee_without_enough_money() {
-        verifyDoNotServeOrder(PRICE_OF_COFFEE - 0.1, new Coffee(0));
+        for (Map.Entry<Order, Double> entry : validOrders.entrySet()) {
+            Order order = entry.getKey();
+            double price = entry.getValue();
+            verifyServeOrder(price, order);
+        }
+
     }
 
     @Test
     public void send_a_message_with_the_missing_amount() {
         verifyMessageIsSentWith(0.40, new Coffee(0), "0,2 euros");
-    }
-
-    @Test
-    public void send_the_order_to_prepare_a_tea_when_there_is_enough_money() {
-        verifyServeOrder(PRICE_OF_TEA, new Tea(0));
     }
 
     @Test
@@ -46,11 +50,6 @@ public class CoffeeMachineTest {
     @Test
     public void send_a_message_with_the_missing_amount_when_prepare_a_tea_without_enough_money() {
         verifyMessageIsSentWith(0.30, new Tea(0), "0,1 euros");
-    }
-
-    @Test
-    public void send_the_order_to_prepare_a_chocolate_when_there_is_enough_money() {
-        verifyServeOrder(PRICE_OF_CHOCOLATE, new Chocolate(0));
     }
 
     @Test
