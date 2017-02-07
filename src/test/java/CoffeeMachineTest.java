@@ -28,13 +28,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void send_a_message_with_the_missing_amount() {
-        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
-        machine.pay(0.30);
-
-        Order order = new Coffee(0);
-        machine.serve(order);
-
-        verify(drinkMaker).message(contains("0,1 euros"));
+        verifyMessageIsSentWith(0.30, new Coffee(0), "0,1 euros");
     }
 
     private void verifyServeOrder(double payedAmount, Order order) {
@@ -53,5 +47,14 @@ public class CoffeeMachineTest {
         machine.serve(order);
 
         verify(drinkMaker, never()).serve(order);
+    }
+
+    private void verifyMessageIsSentWith(double amount, Order order, String message) {
+        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
+        machine.pay(amount);
+
+        machine.serve(order);
+
+        verify(drinkMaker).message(contains(message));
     }
 }
