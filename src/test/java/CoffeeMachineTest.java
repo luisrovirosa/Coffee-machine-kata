@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 public class CoffeeMachineTest {
 
     public static final double PRICE_OF_COFFEE = 0.6;
+    public static final double PRICE_OF_TEA = 0.4;
     private DrinkMaker drinkMaker;
 
     @Before
@@ -29,6 +30,12 @@ public class CoffeeMachineTest {
     @Test
     public void send_a_message_with_the_missing_amount() {
         verifyMessageIsSentWith(0.40, new Coffee(0), "0,2 euros");
+    }
+
+
+    @Test
+    public void send_the_order_to_prepare_a_tea_when_there_is_enough_money() {
+        verifyServeOrder(PRICE_OF_TEA, new Tea(0));
     }
 
     private void verifyServeOrder(double payedAmount, Order order) {
