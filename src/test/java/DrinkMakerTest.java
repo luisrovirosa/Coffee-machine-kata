@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class CoffeeMachineTest {
+public class DrinkMakerTest {
 
     private MachineDriver driver;
 
@@ -14,78 +14,78 @@ public class CoffeeMachineTest {
     }
     @Test
     public void should_send_the_order_to_serve_a_coffee_without_sugar(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.serve(coffeeWithoutSugar());
+        drinkMaker.serve(coffeeWithoutSugar());
 
         verify(driver).send("C::");
     }
 
     @Test
     public void should_send_the_order_to_serve_a_coffee_with_one_sugar(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.serve(coffeeWithSugar(1));
+        drinkMaker.serve(coffeeWithSugar(1));
 
         verify(driver).send("C:1:0");
     }
 
     @Test
     public void should_send_the_order_to_serve_a_coffee_with_two_sugar(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.serve(coffeeWithSugar(2));
+        drinkMaker.serve(coffeeWithSugar(2));
 
         verify(driver).send("C:2:0");
     }
 
     @Test
     public void should_send_the_order_to_serve_a_tea_without_sugar(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.serve(teaWithoutSugar());
+        drinkMaker.serve(teaWithoutSugar());
 
         verify(driver).send("T::");
     }
 
     @Test
     public void should_send_the_order_to_serve_a_tea_with_one_sugar(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.serve(teaWithSugar(1));
+        drinkMaker.serve(teaWithSugar(1));
 
         verify(driver).send("T:1:0");
     }
 
     @Test
     public void should_send_the_order_to_serve_a_chocolate_without_sugar(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.serve(chocolateWithoutSugar());
+        drinkMaker.serve(chocolateWithoutSugar());
 
         verify(driver).send("H::");
     }
 
     @Test
     public void should_send_the_order_to_serve_a_chocolate_with_one_sugar(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.serve(chocolateWithSugar(1));
+        drinkMaker.serve(chocolateWithSugar(1));
 
         verify(driver).send("H:1:0");
     }
 
     @Test
     public void should_send_the_message_to_the_user(){
-        CoffeeMachine machine = machine();
+        DrinkMaker drinkMaker = drinkMaker();
 
-        machine.message("a Message");
+        drinkMaker.message("a Message");
 
         verify(driver).send("M:a Message");
     }
 
-    private CoffeeMachine machine() {
-        return new CoffeeMachine(driver);
+    private DrinkMaker drinkMaker() {
+        return new DrinkMaker(driver);
     }
 
     private Order coffeeWithoutSugar() {

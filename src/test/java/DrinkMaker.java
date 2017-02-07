@@ -1,7 +1,7 @@
-public class CoffeeMachine {
+public class DrinkMaker {
     private final MachineDriver driver;
 
-    public CoffeeMachine(MachineDriver driver) {
+    public DrinkMaker(MachineDriver driver) {
         this.driver = driver;
     }
 
