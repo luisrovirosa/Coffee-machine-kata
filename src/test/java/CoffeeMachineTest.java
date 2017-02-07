@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.mockito.Matchers.contains;
@@ -8,6 +9,12 @@ import static org.mockito.Mockito.verify;
 public class CoffeeMachineTest {
 
     public static final double PRICE_OF_COFFEE = 0.4;
+    private DrinkMaker drinkMaker;
+
+    @Before
+    public void setUp() throws Exception {
+        drinkMaker = mock(DrinkMaker.class);
+    }
 
     @Test
     public void send_the_order_to_prepare_a_coffee_when_there_is_enough_money(){
@@ -16,7 +23,6 @@ public class CoffeeMachineTest {
 
     @Test
     public void do_not_send_the_order_to_prepare_a_coffee_when_there_is_no_enough_money(){
-        DrinkMaker drinkMaker = mock(DrinkMaker.class);
         CoffeeMachine machine = new CoffeeMachine(drinkMaker);
         machine.pay(0.39);
 
@@ -28,7 +34,6 @@ public class CoffeeMachineTest {
 
     @Test
     public void send_a_message_with_the_missing_amount(){
-        DrinkMaker drinkMaker = mock(DrinkMaker.class);
         CoffeeMachine machine = new CoffeeMachine(drinkMaker);
         machine.pay(0.30);
 
@@ -39,7 +44,6 @@ public class CoffeeMachineTest {
     }
 
     private void verifyIsValidOrder(double payedAmount, Order order) {
-        DrinkMaker drinkMaker = mock(DrinkMaker.class);
         CoffeeMachine machine = new CoffeeMachine(drinkMaker);
         machine.pay(payedAmount);
 
