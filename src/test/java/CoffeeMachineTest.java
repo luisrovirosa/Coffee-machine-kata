@@ -1,12 +1,19 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class CoffeeMachineTest {
+
+    private MachineDriver driver;
+
+    @Before
+    public void setUp(){
+        driver = mock(MachineDriver.class);
+    }
     @Test
     public void should_send_the_order_to_serve_a_coffee_without_sugar(){
-        MachineDriver driver = mock(MachineDriver.class);
         CoffeeMachine machine = new CoffeeMachine(driver);
 
         machine.serve(coffeeWithoutSugar());
@@ -16,7 +23,6 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_send_the_order_to_serve_a_coffee_with_one_sugar(){
-        MachineDriver driver = mock(MachineDriver.class);
         CoffeeMachine machine = new CoffeeMachine(driver);
 
         machine.serve(coffeeWithSugar(1));
@@ -26,7 +32,6 @@ public class CoffeeMachineTest {
 
     @Test
     public void should_send_the_order_to_serve_a_coffee_with_two_sugar(){
-        MachineDriver driver = mock(MachineDriver.class);
         CoffeeMachine machine = new CoffeeMachine(driver);
 
         machine.serve(coffeeWithSugar(2));
