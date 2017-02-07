@@ -1,3 +1,3 @@
-public interface Order {
-    int numberOfSugars();
+abstract public class Order {
+    public abstract int numberOfSugars();
 }

@@ -1,4 +1,4 @@
-public class Chocolate implements Order {
+public class Chocolate extends Order {
     private final int numberOfSugars;
 
     public Chocolate(int numberOfSugars) {

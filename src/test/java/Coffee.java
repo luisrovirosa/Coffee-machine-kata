@@ -1,4 +1,4 @@
-public class Coffee implements Order {
+public class Coffee extends Order {
     private final int numberOfSugars;
 
     public Coffee(int numberOfSugars) {
