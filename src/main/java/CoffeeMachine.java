@@ -1,16 +1,19 @@
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;
+    private double amount;
 
     public CoffeeMachine(DrinkMaker drinkMaker) {
         this.drinkMaker = drinkMaker;
     }
 
     public void pay(double amount) {
-
+        this.amount = amount;
     }
 
     public void serve(Order order) {
-        drinkMaker.serve(order);
+        if (amount >= 0.4){
+            drinkMaker.serve(order);
+        }
 
     }
 }

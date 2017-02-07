@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 public class CoffeeMachineTest {
@@ -14,5 +15,16 @@ public class CoffeeMachineTest {
         machine.serve(order);
 
         verify(drinkMaker).serve(order);
+    }
+    @Test
+    public void do_not_send_the_order_to_prepare_a_coffee_when_there_is_no_enough_money(){
+        DrinkMaker drinkMaker = mock(DrinkMaker.class);
+        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
+        machine.pay(0.39);
+
+        Order order = new Coffee(0);
+        machine.serve(order);
+
+        verify(drinkMaker, never()).serve(order);
     }
 }
