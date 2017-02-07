@@ -8,7 +8,7 @@ import static org.mockito.Mockito.verify;
 
 public class CoffeeMachineTest {
 
-    public static final double PRICE_OF_COFFEE = 0.4;
+    public static final double PRICE_OF_COFFEE = 0.6;
     private DrinkMaker drinkMaker;
 
     @Before
@@ -28,7 +28,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void send_a_message_with_the_missing_amount() {
-        verifyMessageIsSentWith(0.30, new Coffee(0), "0,1 euros");
+        verifyMessageIsSentWith(0.40, new Coffee(0), "0,2 euros");
     }
 
     private void verifyServeOrder(double payedAmount, Order order) {
