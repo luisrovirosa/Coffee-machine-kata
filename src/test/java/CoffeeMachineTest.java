@@ -25,4 +25,15 @@ public class CoffeeMachineTest {
 
         verify(driver).send("C:1:0");
     }
+
+    @Test
+    public void should_send_the_order_to_serve_a_coffee_with_two_sugar(){
+        Order order = new Coffee(2);
+        MachineDriver driver = mock(MachineDriver.class);
+        CoffeeMachine machine = new CoffeeMachine(driver);
+
+        machine.serve(order);
+
+        verify(driver).send("C:2:0");
+    }
 }
