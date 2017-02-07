@@ -6,6 +6,10 @@ public class CoffeeMachine {
     }
 
     public void serve(Order order) {
-        driver.send("C::");
+        if (order.numberOfSugars() == 0) {
+            driver.send("C::");
+        } else {
+            driver.send("C:1:0");
+        }
     }
 }
