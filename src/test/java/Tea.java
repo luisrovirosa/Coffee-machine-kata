@@ -1,11 +1,5 @@
 public class Tea extends Order {
-    private final int numberOfSugars;
-
     public Tea(int numberOfSugars) {
-        this.numberOfSugars = numberOfSugars;
-    }
-
-    public int numberOfSugars() {
-        return numberOfSugars;
+        super(numberOfSugars);
     }
 }

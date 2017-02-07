@@ -1,3 +1,11 @@
 abstract public class Order {
-    public abstract int numberOfSugars();
+    protected final int numberOfSugars;
+
+    public Order(int numberOfSugars) {
+        this.numberOfSugars = numberOfSugars;
+    }
+
+    public int numberOfSugars() {
+        return numberOfSugars;
+    }
 }
