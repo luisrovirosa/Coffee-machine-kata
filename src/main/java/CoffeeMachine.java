@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class CoffeeMachine {
     private final DrinkMaker drinkMaker;
     private double amount;
@@ -13,6 +15,10 @@ public class CoffeeMachine {
     public void serve(Order order) {
         if (amount >= 0.4){
             drinkMaker.serve(order);
+        } else {
+            DecimalFormat format = new DecimalFormat("#.#");
+            String missingAmount = format.format(0.4 - amount);
+            drinkMaker.message(missingAmount + " euros");
         }
 
     }
