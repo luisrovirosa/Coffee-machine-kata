@@ -13,11 +13,15 @@ public class CoffeeMachine {
     }
 
     public void serve(Order order) {
-        if (!(amount >= order.getOrderPrice())) {
+        if (!isEnoughMoneyToPay(order)) {
             drinkMaker.message(missingAmountMessage(order));
             return;
         }
         drinkMaker.serve(order);
+    }
+
+    private boolean isEnoughMoneyToPay(Order order) {
+        return amount >= order.getOrderPrice();
     }
 
     private String missingAmountMessage(Order order) {
