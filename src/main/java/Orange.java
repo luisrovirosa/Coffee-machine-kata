@@ -1,5 +1,5 @@
 public class Orange extends Order {
-    public Orange(int numberOfSugar, boolean isExtraHot) {
-        super(numberOfSugar, 0.6, isExtraHot);
+    public Orange() {
+        super(0, 0.6, false);
     }
 }

@@ -60,7 +60,7 @@ public class CoffeeMachineTest {
         validOrders.put(new Coffee(0, false), PRICE_OF_COFFEE);
         validOrders.put(new Tea(0, false), PRICE_OF_TEA);
         validOrders.put(new Chocolate(0, false), PRICE_OF_CHOCOLATE);
-        validOrders.put(new Orange(0, false), PRICE_OF_ORANGE);
+        validOrders.put(new Orange(), PRICE_OF_ORANGE);
         return validOrders;
     }
 

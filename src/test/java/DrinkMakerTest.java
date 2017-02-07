@@ -95,7 +95,6 @@ public class DrinkMakerTest {
         verify(driver).send("H:1:0");
     }
 
-
     @Test
     public void should_send_the_order_to_serve_a_extra_hot_chocolate() {
         DrinkMaker drinkMaker = drinkMaker();
@@ -103,6 +102,15 @@ public class DrinkMakerTest {
         drinkMaker.serve(extraHotChocolateWithoutSugar());
 
         verify(driver).send("Hh::");
+    }
+
+    @Test
+    public void should_send_the_order_to_serve_an_orange_juice() {
+        DrinkMaker drinkMaker = drinkMaker();
+
+        drinkMaker.serve(orangeJuice());
+
+        verify(driver).send("O::");
     }
 
     @Test
@@ -152,5 +160,9 @@ public class DrinkMakerTest {
 
     private Order extraHotChocolateWithoutSugar() {
         return new Chocolate(0, true);
+    }
+
+    private Order orangeJuice() {
+        return new Orange();
     }
 }

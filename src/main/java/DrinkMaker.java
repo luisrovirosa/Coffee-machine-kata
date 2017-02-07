@@ -19,8 +19,10 @@ public class DrinkMaker {
             command = "C";
         } else if (order instanceof Tea) {
             command = "T";
-        } else {
+        } else if (order instanceof Chocolate){
             command = "H";
+        } else {
+            command = "O";
         }
         command = order.isExtraHot() ? command + 'h' : command;
         return command;
