@@ -9,8 +9,12 @@ public class CoffeeMachine {
         if (order.numberOfSugars() == 0) {
             driver.send("C::");
         } else {
-            driver.send("C:" + numberOfSugars(order) + ":0");
+            driver.send("C:" + numberOfSugars(order) + ":" + stickCommand(order));
         }
+    }
+
+    private String stickCommand(Order order) {
+        return "0";
     }
 
     private String numberOfSugars(Order order) {
