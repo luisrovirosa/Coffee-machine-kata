@@ -15,6 +15,7 @@ public class CoffeeMachineTest {
     public static final double PRICE_OF_COFFEE = 0.6;
     public static final double PRICE_OF_TEA = 0.4;
     public static final double PRICE_OF_CHOCOLATE = 0.5;
+    public static final double PRICE_OF_ORANGE = 0.6;
     private DrinkMaker drinkMaker;
 
     @Before
@@ -60,6 +61,7 @@ public class CoffeeMachineTest {
         validOrders.put(new Coffee(0), PRICE_OF_COFFEE);
         validOrders.put(new Tea(0), PRICE_OF_TEA);
         validOrders.put(new Chocolate(0), PRICE_OF_CHOCOLATE);
+        validOrders.put(new Orange(0), PRICE_OF_ORANGE);
         return validOrders;
     }
 
