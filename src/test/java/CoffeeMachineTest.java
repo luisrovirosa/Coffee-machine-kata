@@ -23,7 +23,7 @@ public class CoffeeMachineTest {
     }
 
     @Test
-    public void do_not_send_the_order_to_prepare_a_coffee_when_there_is_no_enough_money() {
+    public void send_a_message_with_the_missing_amount_when_prepare_a_coffee_without_enough_money() {
         verifyDoNotServeOrder(PRICE_OF_COFFEE - 0.1, new Coffee(0));
     }
 
@@ -31,6 +31,7 @@ public class CoffeeMachineTest {
     public void send_a_message_with_the_missing_amount() {
         verifyMessageIsSentWith(0.40, new Coffee(0), "0,2 euros");
     }
+
     @Test
     public void send_the_order_to_prepare_a_tea_when_there_is_enough_money() {
         verifyServeOrder(PRICE_OF_TEA, new Tea(0));
@@ -39,6 +40,11 @@ public class CoffeeMachineTest {
     @Test
     public void do_not_send_the_order_to_prepare_a_tea_when_there_is_no_enough_money() {
         verifyDoNotServeOrder(PRICE_OF_TEA - 0.1, new Tea(0));
+    }
+
+    @Test
+    public void send_a_message_with_the_missing_amount_when_prepare_a_tea_without_enough_money() {
+        verifyMessageIsSentWith(0.30, new Tea(0), "0,1 euros");
     }
 
     private void verifyServeOrder(double payedAmount, Order order) {
