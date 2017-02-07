@@ -18,7 +18,7 @@ public class CoffeeMachineTest {
 
     @Test
     public void send_the_order_to_prepare_a_coffee_when_there_is_enough_money(){
-        verifyIsValidOrder(PRICE_OF_COFFEE, new Coffee(0));
+        verifyServeOrder(PRICE_OF_COFFEE, new Coffee(0));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class CoffeeMachineTest {
         verify(drinkMaker).message(contains("0,1 euros"));
     }
 
-    private void verifyIsValidOrder(double payedAmount, Order order) {
+    private void verifyServeOrder(double payedAmount, Order order) {
         CoffeeMachine machine = new CoffeeMachine(drinkMaker);
         machine.pay(payedAmount);
 
