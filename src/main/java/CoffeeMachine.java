@@ -17,10 +17,9 @@ public class CoffeeMachine {
             DecimalFormat format = new DecimalFormat("#.#");
             String missingAmount = format.format(order.getOrderPrice() - amount);
             drinkMaker.message(missingAmount + " euros");
-        } else {
-            drinkMaker.serve(order);
+            return;
         }
-
+        drinkMaker.serve(order);
     }
 
 }
