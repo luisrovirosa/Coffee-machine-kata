@@ -6,7 +6,7 @@ import static org.mockito.Mockito.verify;
 public class CoffeeMachineTest {
     @Test
     public void should_send_the_order_to_serve_a_coffee_without_sugar(){
-        Order order = new Coffee(0);
+        Order order = coffeeWithoutSugar();
         MachineDriver driver = mock(MachineDriver.class);
         CoffeeMachine machine = new CoffeeMachine(driver);
 
@@ -35,5 +35,9 @@ public class CoffeeMachineTest {
         machine.serve(order);
 
         verify(driver).send("C:2:0");
+    }
+
+    private Order coffeeWithoutSugar() {
+        return new Coffee(0);
     }
 }
