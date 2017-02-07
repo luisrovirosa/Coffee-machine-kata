@@ -39,6 +39,15 @@ public class CoffeeMachineTest {
         verify(driver).send("C:2:0");
     }
 
+    @Test
+    public void should_send_the_order_to_serve_a_tea_without_sugar(){
+        CoffeeMachine machine = machine();
+
+        machine.serve(teaWithoutSugar());
+
+        verify(driver).send("T::");
+    }
+
     private CoffeeMachine machine() {
         return new CoffeeMachine(driver);
     }
@@ -49,5 +58,9 @@ public class CoffeeMachineTest {
 
     private Order coffeeWithSugar(int numberOfSugars) {
         return new Coffee(numberOfSugars);
+    }
+
+    private Order teaWithoutSugar() {
+        return new Tea(0);
     }
 }

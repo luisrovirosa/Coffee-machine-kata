@@ -6,7 +6,11 @@ public class CoffeeMachine {
     }
 
     public void serve(Order order) {
-        driver.send("C:" + numberOfSugars(order) + ":" + stickCommand(order));
+        driver.send(productCommand(order) + ":" + numberOfSugars(order) + ":" + stickCommand(order));
+    }
+
+    private String productCommand(Order order) {
+        return order instanceof Coffee ? "C" : "T";
     }
 
     private String stickCommand(Order order) {
