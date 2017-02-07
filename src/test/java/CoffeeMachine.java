@@ -10,7 +10,13 @@ public class CoffeeMachine {
     }
 
     private String productCommand(Order order) {
-        return order instanceof Coffee ? "C" : "T";
+        if (order instanceof Coffee) {
+            return "C";
+        } else if (order instanceof Tea) {
+            return "T";
+        } else {
+            return "H";
+        }
     }
 
     private String stickCommand(Order order) {
