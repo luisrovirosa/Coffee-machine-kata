@@ -6,16 +6,12 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 public class CoffeeMachineTest {
+
+    public static final double PRICE_OF_COFFEE = 0.4;
+
     @Test
     public void send_the_order_to_prepare_a_coffee_when_there_is_enough_money(){
-        DrinkMaker drinkMaker = mock(DrinkMaker.class);
-        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
-        machine.pay(0.4);
-
-        Order order = new Coffee(0);
-        machine.serve(order);
-
-        verify(drinkMaker).serve(order);
+        verifyIsValidOrder(PRICE_OF_COFFEE, new Coffee(0));
     }
 
     @Test
@@ -40,5 +36,15 @@ public class CoffeeMachineTest {
         machine.serve(order);
 
         verify(drinkMaker).message(contains("0,1 euros"));
+    }
+
+    private void verifyIsValidOrder(double payedAmount, Order order) {
+        DrinkMaker drinkMaker = mock(DrinkMaker.class);
+        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
+        machine.pay(payedAmount);
+
+        machine.serve(order);
+
+        verify(drinkMaker).serve(order);
     }
 }
