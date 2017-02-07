@@ -75,6 +75,15 @@ public class CoffeeMachineTest {
         verify(driver).send("H:1:0");
     }
 
+    @Test
+    public void should_send_the_message_to_the_user(){
+        CoffeeMachine machine = machine();
+
+        machine.message("a Message");
+
+        verify(driver).send("M:a Message");
+    }
+
     private CoffeeMachine machine() {
         return new CoffeeMachine(driver);
     }

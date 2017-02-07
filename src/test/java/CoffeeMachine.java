@@ -9,6 +9,10 @@ public class CoffeeMachine {
         driver.send(productCommand(order) + ":" + numberOfSugars(order) + ":" + stickCommand(order));
     }
 
+    public void message(String text) {
+        driver.send("M:" + text);
+    }
+
     private String productCommand(Order order) {
         if (order instanceof Coffee) {
             return "C";
