@@ -32,29 +32,27 @@ public class CoffeeMachineTest {
     }
 
     private void verifyServeOrder(double payedAmount, Order order) {
-        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
-        machine.pay(payedAmount);
-
-        machine.serve(order);
+        serveOrderWithPayment(payedAmount, order);
 
         verify(drinkMaker).serve(order);
     }
 
     private void verifyDoNotServeOrder(double payedAmount, Order order) {
-        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
-        machine.pay(payedAmount);
-
-        machine.serve(order);
+        serveOrderWithPayment(payedAmount, order);
 
         verify(drinkMaker, never()).serve(order);
     }
 
-    private void verifyMessageIsSentWith(double amount, Order order, String message) {
-        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
-        machine.pay(amount);
-
-        machine.serve(order);
+    private void verifyMessageIsSentWith(double payedAmount, Order order, String message) {
+        serveOrderWithPayment(payedAmount, order);
 
         verify(drinkMaker).message(contains(message));
+    }
+
+    private void serveOrderWithPayment(double payedAmount, Order order) {
+        CoffeeMachine machine = new CoffeeMachine(drinkMaker);
+        machine.pay(payedAmount);
+
+        machine.serve(order);
     }
 }
