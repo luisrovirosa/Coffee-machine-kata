@@ -6,7 +6,11 @@ public class DrinkMaker {
     }
 
     public void serve(Order order) {
-        driver.send(productCommand(order) + ":" + numberOfSugars(order) + ":" + stickCommand(order));
+        driver.send(command(order));
+    }
+
+    private String command(Order order) {
+        return productCommand(order) + ":" + numberOfSugars(order) + ":" + stickCommand(order);
     }
 
     public void message(String text) {
