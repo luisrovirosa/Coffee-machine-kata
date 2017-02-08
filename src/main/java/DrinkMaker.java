@@ -33,14 +33,11 @@ public class DrinkMaker {
     }
 
     private String stickCommand(Order order) {
-        return containsSugar(order) ? "0" : "";
+        return order.containsSugar() ? "0" : "";
     }
 
     private String numberOfSugars(Order order) {
-        return containsSugar(order) ? String.valueOf(order.numberOfSugars()) : "";
+        return order.containsSugar() ? String.valueOf(order.numberOfSugars()) : "";
     }
 
-    private boolean containsSugar(Order order) {
-        return order.numberOfSugars() > 0;
-    }
 }

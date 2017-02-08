@@ -20,4 +20,8 @@ abstract public class Order {
     public boolean isExtraHot() {
         return isExtraHot;
     }
+
+    boolean containsSugar() {
+        return numberOfSugars() > 0;
+    }
 }
